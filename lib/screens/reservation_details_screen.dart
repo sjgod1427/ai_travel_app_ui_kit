@@ -23,10 +23,10 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: Icon(

@@ -15,9 +15,9 @@ class _AIChatSectionState extends State<AIChatSection> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.white, // Match scaffold background
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),

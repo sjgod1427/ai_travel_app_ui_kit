@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Consistent light grey background
+      backgroundColor: Colors.white, // Consistent light grey background
       appBar: AppBar(
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.white, // Match scaffold background
         elevation: 0,
         scrolledUnderElevation: 0, // Ensure no shadow on scroll
         titleSpacing: 0, // Remove default title spacing for custom layout

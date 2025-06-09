@@ -13,7 +13,7 @@ class BookHotelScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor:
-          Colors.grey[100], // Light grey background matching the image
+          Colors.white, // Light grey background matching the image
       appBar: AppBar(
         backgroundColor: Colors.grey[100], // Match scaffold background
         elevation: 0, // No shadow

@@ -22,7 +22,8 @@ import 'package:ai_travel_app_ui_kit/screens/booking_pending_screen.dart'; // Im
 import 'package:ai_travel_app_ui_kit/screens/ai_chat_screen2.dart'; // Import the new AI chat screen 2
 import 'package:ai_travel_app_ui_kit/screens/login_screen.dart'; // Import login screen
 import 'package:ai_travel_app_ui_kit/screens/signup_screen.dart'; // Import signup screen
-import 'package:ai_travel_app_ui_kit/screens/otp_screen.dart'; // Import OTP screen
+import 'package:ai_travel_app_ui_kit/screens/otp_screen.dart';
+import 'package:pixel_preview/pixel_thumbnail/pixel_thumbnail.dart'; // Import OTP screen
 
 void main() {
   runApp(const MyApp());
@@ -78,120 +79,153 @@ class MyApp extends StatelessWidget {
         textTheme:
             GoogleFonts.plusJakartaSansTextTheme(), // Apply user's text theme
       ),
-      home: PixelApp(
-        iFrameMode: true,
-        groups: [
-          PixelGroup(
-            title: 'Screens',
-            children: [
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const OnboardingScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const LoginScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const SignupScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const PhoneInputScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const OtpScreen(), // Set as the initial screen
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const HomeScreen(),
-              ),
+      home:
+          false
+              ? PixelThumbnail(
+                screens: [
+                  PixelPreview(
+                    presets: ScreenPresets(),
+                    enabled: true,
+                    child: const HotelDetailsScreen(),
+                  ),
 
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const AIChatSection(),
-              ),
+                  PixelPreview(
+                    presets: ScreenPresets(),
+                    enabled: true,
+                    child: const ReservationDetailsScreen(),
+                  ),
+                  PixelPreview(
+                    presets: ScreenPresets(),
+                    enabled: true,
+                    child: const AIChatSection(),
+                  ),
+                  PixelPreview(
+                    presets: ScreenPresets(),
+                    enabled: true,
+                    child: const HomeScreen(),
+                  ),
 
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const AIChatScreen2(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const AppAIScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const BookHotelScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const DateTimelineScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const ExploreHotelsScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const HotelDetailsScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const HotelFilterScreen(),
-              ),
+                  PixelPreview(
+                    presets: ScreenPresets(),
+                    enabled: true,
+                    child: const HotelFilterScreen(),
+                  ),
+                ],
+              )
+              : PixelApp(
+                iFrameMode: true,
+                groups: [
+                  PixelGroup(
+                    title: 'Screens',
+                    children: [
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const OnboardingScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const LoginScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const SignupScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const PhoneInputScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const OtpScreen(), // Set as the initial screen
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const HomeScreen(),
+                      ),
 
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const OrderStatusScreen(),
-              ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const AIChatSection(),
+                      ),
 
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const ReservationDetailsScreen(),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const AIChatScreen2(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const AppAIScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const BookHotelScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const DateTimelineScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const ExploreHotelsScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const HotelDetailsScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const HotelFilterScreen(),
+                      ),
+
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const OrderStatusScreen(),
+                      ),
+
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const ReservationDetailsScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const BookingPendingScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const ProfileScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const SettingsScreen(),
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
+                        child: const SubscriptionScreen(),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const BookingPendingScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const ProfileScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const SettingsScreen(),
-              ),
-              PixelPreview(
-                presets: ScreenPresets(),
-                enabled: true,
-                child: const SubscriptionScreen(),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }
