@@ -20,10 +20,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -383,8 +383,8 @@ class _SettingsToggleTile extends StatelessWidget {
             onChanged: onChanged,
             activeColor: primaryColor,
             activeTrackColor: primaryColor,
-            inactiveThumbColor: Colors.grey[400],
-            inactiveTrackColor: Colors.grey[300],
+            inactiveThumbColor: Colors.grey[200],
+            inactiveTrackColor: Colors.grey[100],
             thumbColor: WidgetStateProperty.resolveWith<Color>((
               Set<WidgetState> states,
             ) {

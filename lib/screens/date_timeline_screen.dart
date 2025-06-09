@@ -92,10 +92,9 @@ class _DateTimelineScreenState extends State<DateTimelineScreen> {
         7; // Sunday = 0, Monday = 1, ..., Saturday = 6
 
     return Scaffold(
-      backgroundColor:
-          Colors.grey[100], // Light grey background matching the image
+      backgroundColor: Colors.white, // Light grey background matching the image
       appBar: AppBar(
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.transparent, // Match scaffold background
         elevation: 0, // No shadow
         leading: IconButton(
           icon: Icon(
@@ -139,9 +138,9 @@ class _DateTimelineScreenState extends State<DateTimelineScreen> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withValues(alpha: 0.1),
-                    spreadRadius: 1,
+                    spreadRadius: 5,
                     blurRadius: 5,
-                    offset: const Offset(0, 3), // Subtle shadow
+                    offset: const Offset(0, 5), // Subtle shadow
                   ),
                 ],
               ),

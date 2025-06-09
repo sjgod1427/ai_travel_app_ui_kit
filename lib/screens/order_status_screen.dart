@@ -17,10 +17,10 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -254,6 +254,10 @@ class _BookingStatusCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: colorScheme.surface, // White background
           borderRadius: BorderRadius.circular(15.0),
+          border: Border.all(
+            width: 0.5,
+            color: Colors.grey.withValues(alpha: 0.5),
+          ),
           // boxShadow: [
           //   BoxShadow(
           //     color: primaryColor.withValues(alpha: 0.1),

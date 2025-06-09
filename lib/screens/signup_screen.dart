@@ -1,26 +1,33 @@
+import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/social_auth_button.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
   @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
+
+  @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    final Color primaryColor = Theme.of(context).primaryColor;
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final primaryColor = Theme.of(context).primaryColor;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colorScheme.surface, // White background
+      backgroundColor: colorScheme.surface,
       appBar: AppBar(
         backgroundColor: colorScheme.surface,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
           'Sign Up',
@@ -48,117 +55,43 @@ class SignupScreen extends StatelessWidget {
             const SizedBox(height: 8.0),
             Text(
               'Join us to start your travel journey.',
-              style: textTheme.bodyMedium?.copyWith(
-                color: Colors.grey[600],
-              ),
+              style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
             ),
             const SizedBox(height: 32.0),
-            TextField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Full Name',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[500],
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildTextField(
+              controller: TextEditingController(),
+              labelText: "Full Name",
             ),
             const SizedBox(height: 16.0),
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Email address',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[500],
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildTextField(
+              controller: TextEditingController(),
+              labelText: "Email",
             ),
             const SizedBox(height: 16.0),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[500],
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-                suffixIcon: Icon(Icons.visibility_off, color: Colors.grey[600]),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildPasswordField(
+              controller: TextEditingController(),
             ),
             const SizedBox(height: 16.0),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Confirm Password',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[500],
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-                suffixIcon: Icon(Icons.visibility_off, color: Colors.grey[600]),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildPasswordField(
+              controller: TextEditingController(),
+              labelText: "Confirm Password",
             ),
             const SizedBox(height: 24.0),
-            PrimaryTextButton(
-              text: 'Sign Up',
-              onPressed: () {},
-            ),
+            PrimaryTextButton(text: 'Sign Up', onPressed: () {}),
             const SizedBox(height: 24.0),
             Row(
               children: [
-                Expanded(
-                  child: Divider(color: Colors.grey[300]),
-                ),
+                Expanded(child: Divider(color: Colors.grey[300])),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     'Or',
-                    style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: Colors.grey[600],
+                    ),
                   ),
                 ),
-                Expanded(
-                  child: Divider(color: Colors.grey[300]),
-                ),
+                Expanded(child: Divider(color: Colors.grey[300])),
               ],
             ),
             const SizedBox(height: 24.0),
@@ -173,7 +106,9 @@ class SignupScreen extends StatelessWidget {
               children: [
                 Text(
                   'Already have an account?',
-                  style: textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[700],
+                  ),
                 ),
                 TextButton(
                   onPressed: () {

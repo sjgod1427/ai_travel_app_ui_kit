@@ -9,13 +9,11 @@ class BookHotelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Color primaryColor = Theme.of(context).primaryColor;
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor:
-          Colors.white, // Light grey background matching the image
+      backgroundColor: Colors.white, // Light grey background matching the image
       appBar: AppBar(
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.transparent, // Match scaffold background
         elevation: 0, // No shadow
         leading: IconButton(
           icon: Icon(Icons.close, color: primaryColor, size: 20), // Close icon
@@ -53,7 +51,7 @@ class BookHotelScreen extends StatelessWidget {
                 ),
                 filled: true,
                 fillColor:
-                    colorScheme.surface, // White background for the input field
+                    Colors.grey[100], // White background for the input field
                 prefixIcon: Padding(
                   // Add padding around the prefix icon
                   padding: const EdgeInsets.only(
@@ -62,7 +60,7 @@ class BookHotelScreen extends StatelessWidget {
                   ), // Adjust padding as needed
                   child: Icon(
                     Icons.location_on,
-                    color: Colors.grey[600],
+                    color: primaryColor,
                   ), // Location icon
                 ),
                 suffixIcon: Padding(

@@ -10,10 +10,14 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  final List<TextEditingController> _otpControllers =
-      List.generate(4, (index) => TextEditingController());
-  final List<FocusNode> _otpFocusNodes =
-      List.generate(4, (index) => FocusNode());
+  final List<TextEditingController> _otpControllers = List.generate(
+    4,
+    (index) => TextEditingController(),
+  );
+  final List<FocusNode> _otpFocusNodes = List.generate(
+    4,
+    (index) => FocusNode(),
+  );
 
   @override
   void initState() {
@@ -86,9 +90,7 @@ class _OtpScreenState extends State<OtpScreen> {
             const SizedBox(height: 8.0),
             Text(
               'We sent a 4-digit code to +88017XXXXXXXX',
-              style: textTheme.bodyMedium?.copyWith(
-                color: Colors.grey[600],
-              ),
+              style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
             ),
             const SizedBox(height: 32.0),
             Row(
@@ -134,7 +136,7 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 }
 
-class _OtpInputField extends StatelessWidget {
+class _OtpInputField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final TextTheme textTheme;
@@ -146,41 +148,77 @@ class _OtpInputField extends StatelessWidget {
   });
 
   @override
+  State<_OtpInputField> createState() => _OtpInputFieldState();
+}
+
+class _OtpInputFieldState extends State<_OtpInputField> {
+  late ValueNotifier<bool> isFocused;
+
+  @override
+  void initState() {
+    super.initState();
+    isFocused = ValueNotifier<bool>(widget.focusNode.hasFocus);
+    widget.focusNode.addListener(() {
+      isFocused.value = widget.focusNode.hasFocus;
+    });
+  }
+
+  @override
+  void dispose() {
+    isFocused.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 60, // Fixed width for each OTP box
-      height: 60, // Fixed height for each OTP box
-      decoration: BoxDecoration(
-        color: Colors.grey[200], // Light grey background
-        borderRadius: BorderRadius.circular(10.0), // Rounded corners
-        border: Border.all(
-          color: focusNode.hasFocus
-              ? Theme.of(context).primaryColor
-              : Colors.grey[300]!,
-          width: focusNode.hasFocus ? 2.0 : 1.0,
-        ),
-      ),
-      alignment: Alignment.center,
-      child: TextField(
-        controller: controller,
-        focusNode: focusNode,
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        maxLength: 1, // Only one digit per field
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly, // Allow only digits
-        ],
-        style: textTheme.headlineSmall?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Colors.grey[850],
-        ),
-        decoration: const InputDecoration(
-          counterText: '', // Hide maxLength counter
-          border: InputBorder.none, // Hide default border
-          contentPadding: EdgeInsets.zero,
-        ),
-        cursorColor: Theme.of(context).primaryColor,
-      ),
+    final focusColor = Theme.of(context).primaryColor;
+
+    return ValueListenableBuilder<bool>(
+      valueListenable: isFocused,
+      builder: (context, focused, _) {
+        return Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+              color: focused ? focusColor : Colors.grey[300]!,
+              width: focused ? 2.0 : 1.0,
+            ),
+            boxShadow:
+                focused
+                    ? [
+                      BoxShadow(
+                        color: focusColor.withOpacity(0.15),
+                        blurRadius: 15.0,
+                        spreadRadius: 5.0,
+                        offset: const Offset(0, 0),
+                      ),
+                    ]
+                    : [],
+          ),
+          alignment: Alignment.center,
+          child: TextField(
+            controller: widget.controller,
+            focusNode: widget.focusNode,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            maxLength: 1,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            style: widget.textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[850],
+            ),
+            decoration: const InputDecoration(
+              counterText: '',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+            ),
+            cursorColor: focusColor,
+          ),
+        );
+      },
     );
   }
 }

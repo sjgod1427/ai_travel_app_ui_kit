@@ -75,10 +75,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _locationFillColor ??= colorScheme.surface;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -176,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller: TextEditingController(text: 'Jane Cooper'),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: _nameFillColor, // Dynamic fill color
+                fillColor: Colors.grey[100], // Dynamic fill color
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide.none,
@@ -195,10 +195,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
-                    vertical: 16,
+                    vertical: 12,
                   ),
                   decoration: BoxDecoration(
-                    color: colorScheme.surface,
+                    color: Colors.grey.withValues(alpha: 0.09),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Row(
@@ -220,7 +220,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     controller: TextEditingController(text: '1616 - 411666'),
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: _mobileNumberFillColor, // Dynamic fill color
+                      fillColor: Colors.grey.withValues(
+                        alpha: 0.09,
+                      ), // Dynamic fill color
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
@@ -244,7 +246,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller: TextEditingController(text: 'Current Location'),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: _locationFillColor, // Dynamic fill color
+                fillColor: Colors.grey[100], // Dynamic fill color
                 prefixIcon: Icon(Icons.location_on, color: Colors.grey[600]),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -292,13 +294,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 40.0),
             Center(
-              child: SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: PrimaryTextButton(
-                  text: 'Learn more about Travel AI App',
-                  onPressed: () {},
-                ),
+              child: PrimaryTextButton(
+                text: 'Learn more about Travel AI App',
+                onPressed: () {},
               ),
             ),
             const SizedBox(height: 40.0),

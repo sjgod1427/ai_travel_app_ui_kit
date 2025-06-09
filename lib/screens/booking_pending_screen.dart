@@ -11,10 +11,10 @@ class BookingPendingScreen extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.transparent, // Match scaffold background
         elevation: 0, // No shadow
         leading: IconButton(
           icon: Icon(Icons.close, color: primaryColor, size: 20), // Close icon
@@ -64,7 +64,8 @@ class BookingPendingScreen extends StatelessWidget {
                     address: '4140 Parker Rd. Allentown, Sylhet 3100',
                     pricePerDay: '\$126',
                     rating: '4.9 (234 reviews)',
-                    imageUrl: 'https://picsum.photos/400/250?random=bookingpending',
+                    imageUrl:
+                        'https://picsum.photos/400/250?random=bookingpending',
                     textTheme: textTheme,
                     colorScheme: colorScheme,
                   ),
@@ -74,7 +75,10 @@ class BookingPendingScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 24.0,
+            ),
             child: PrimaryTextButton(
               text: 'Got It',
               onPressed: () {
@@ -123,10 +127,10 @@ class _HotelDetailCardState extends State<_HotelDetailCard> {
         borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
+            color: Colors.grey.withValues(alpha: 0.1),
+            spreadRadius: 5,
             blurRadius: 5,
-            offset: const Offset(0, 3), // Subtle shadow
+            offset: const Offset(0, 5), // Subtle shadow
           ),
         ],
       ),
@@ -142,16 +146,17 @@ class _HotelDetailCardState extends State<_HotelDetailCard> {
                   height: 220,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    height: 220,
-                    width: double.infinity,
-                    color: Colors.grey[300],
-                    child: Icon(
-                      Icons.broken_image,
-                      color: Colors.grey[600],
-                      size: 80,
-                    ),
-                  ),
+                  errorBuilder:
+                      (context, error, stackTrace) => Container(
+                        height: 220,
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                        child: Icon(
+                          Icons.broken_image,
+                          color: Colors.grey[600],
+                          size: 80,
+                        ),
+                      ),
                 ),
               ),
               Positioned(

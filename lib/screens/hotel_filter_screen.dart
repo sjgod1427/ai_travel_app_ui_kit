@@ -195,7 +195,7 @@ class _HotelFilterScreenState extends State<HotelFilterScreen> {
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.grey[200],
+                            fillColor: Colors.grey[100],
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: BorderSide.none,
@@ -224,7 +224,7 @@ class _HotelFilterScreenState extends State<HotelFilterScreen> {
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.grey[200],
+                            fillColor: Colors.grey[100],
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: BorderSide.none,

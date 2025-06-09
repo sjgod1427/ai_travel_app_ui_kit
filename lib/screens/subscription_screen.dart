@@ -11,10 +11,10 @@ class SubscriptionScreen extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -46,7 +46,7 @@ class SubscriptionScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color:
                     Colors
-                        .grey[200], // Light grey background for the icon container
+                        .grey[100], // Light grey background for the icon container
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: Icon(
@@ -84,7 +84,7 @@ class SubscriptionScreen extends StatelessWidget {
                   vertical: 6.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Text(

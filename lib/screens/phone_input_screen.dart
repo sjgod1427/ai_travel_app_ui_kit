@@ -1,4 +1,5 @@
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
+import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
 import 'package:flutter/material.dart';
 
 class PhoneInputScreen extends StatelessWidget {
@@ -63,27 +64,9 @@ class PhoneInputScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32.0),
-            TextField(
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                hintText: 'Number?',
-                hintStyle: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[500],
-                ),
-                filled: true,
-                fillColor:
-                    Colors
-                        .grey[200], // Light grey background for the input field, matching image
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none, // No border line, matching image
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildTextField(
+              controller: TextEditingController(),
+              labelText: "Number?",
             ),
             const Spacer(), // Pushes content to the bottom
             PrimaryTextButton(text: 'Continue'),

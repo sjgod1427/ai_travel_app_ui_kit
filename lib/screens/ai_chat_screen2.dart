@@ -28,9 +28,9 @@ class _AIChatScreen2State extends State<AIChatScreen2> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.white, // Match scaffold background
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -211,10 +211,7 @@ class _SuggestionChip extends StatelessWidget {
                   : Colors.white, // Background changes based on isActive
           borderRadius: BorderRadius.circular(20.0), // Increased border radius
           border: Border.all(
-            color:
-                isActive
-                    ? primaryColor.withOpacity(0.3)
-                    : Colors.grey[300]!,
+            color: isActive ? primaryColor.withOpacity(0.3) : Colors.grey[300]!,
             width: 1.0,
           ),
         ),
@@ -261,10 +258,7 @@ class _AudioRecordingBarState extends State<_AudioRecordingBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 12.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       decoration: BoxDecoration(
         color: widget.colorScheme.surface, // White background
         boxShadow: [
@@ -305,7 +299,10 @@ class _AudioRecordingBarState extends State<_AudioRecordingBar> {
                 children: [
                   Expanded(
                     child: CustomPaint(
-                      size: Size(double.infinity, 30), // Height for the waveform inside the container
+                      size: Size(
+                        double.infinity,
+                        30,
+                      ), // Height for the waveform inside the container
                       painter: _WaveAudioBarPainter(
                         primaryColor: widget.primaryColor,
                         inactiveColor: Colors.grey[400]!,
@@ -333,7 +330,10 @@ class _AudioRecordingBarState extends State<_AudioRecordingBar> {
               borderRadius: BorderRadius.circular(10.0), // Rounded corners
             ),
             child: IconButton(
-              icon: Icon(Icons.arrow_upward, color: widget.colorScheme.onPrimary),
+              icon: Icon(
+                Icons.arrow_upward,
+                color: widget.colorScheme.onPrimary,
+              ),
               onPressed: () {
                 // Handle send/upload action
               },
@@ -369,11 +369,14 @@ class _WaveAudioBarPainter extends CustomPainter {
     for (int i = 0; i < numBars; i++) {
       final double x = i * (barWidth + gapWidth);
       // Generate a random height, scaled to look like an audio waveform
-      final double barHeight = (0.3 + random.nextDouble() * 0.7) * height; // Vary height between 30% and 100% of available height
+      final double barHeight =
+          (0.3 + random.nextDouble() * 0.7) *
+          height; // Vary height between 30% and 100% of available height
 
       // Determine bar color based on progress
       final double currentProgressPx = progress * width;
-      final Color barColor = (x < currentProgressPx) ? primaryColor : inactiveColor;
+      final Color barColor =
+          (x < currentProgressPx) ? primaryColor : inactiveColor;
 
       final Paint paint = Paint()..color = barColor;
 

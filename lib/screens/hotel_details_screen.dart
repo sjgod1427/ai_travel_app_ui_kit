@@ -132,7 +132,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                       ), // Add some space between text and share button
                       Ink(
                         decoration: BoxDecoration(
-                          color: Colors.grey[200],
+                          color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: InkWell(
@@ -966,7 +966,7 @@ class _HotelAttributeChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        color: Colors.grey[200], // Light grey background
+        color: Colors.grey[100], // Light grey background
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(

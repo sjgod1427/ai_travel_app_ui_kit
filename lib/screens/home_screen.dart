@@ -78,14 +78,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[500],
                 ),
                 filled: true,
-                fillColor: colorScheme.surface, // White background
+                fillColor: Colors.grey[100], // White background
                 prefixIcon: Padding(
                   // Added Padding for left padding
                   padding: const EdgeInsets.only(
                     left: 16.0,
                     right: 8.0,
                   ), // Added left padding
-                  child: Icon(Icons.search, color: Colors.grey[600]),
+                  child: Icon(Icons.search, color: primaryColor),
                 ),
                 suffixIcon: Container(
                   margin: const EdgeInsets.only(right: 8.0),

@@ -30,10 +30,10 @@ class _ExploreHotelsScreenState extends State<ExploreHotelsScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Light grey background
+      backgroundColor: Colors.white, // Light grey background
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[100], // Match scaffold background
+        backgroundColor: Colors.transparent, // Match scaffold background
         elevation: 0, // No shadow
         leading: IconButton(
           icon: Icon(
