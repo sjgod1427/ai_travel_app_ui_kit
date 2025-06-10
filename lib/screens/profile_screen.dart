@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 
@@ -170,94 +171,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 24.0),
             // Profile Information Inputs
-            _ProfileSectionTitle(title: 'Name', textTheme: textTheme),
-            TextField(
-              focusNode: _nameFocusNode,
-              controller: TextEditingController(text: 'Jane Cooper'),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[100], // Dynamic fill color
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildTextField(
+              controller: TextEditingController(),
+              labelText: "Name",
             ),
             const SizedBox(height: 16.0),
             _ProfileSectionTitle(title: 'Mobile Number', textTheme: textTheme),
             Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withValues(alpha: 0.09),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        '+880',
-                        style: textTheme.bodyLarge?.copyWith(
-                          color: Colors.grey[850],
-                        ),
-                      ),
-                      Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
-                    ],
+                // Country code text field
+                SizedBox(
+                  width: 80,
+                  child: AuthTextfields().buildTextField(
+                    controller: TextEditingController(text: '+880'),
+                    labelText: "Code",
                   ),
                 ),
                 const SizedBox(width: 8.0),
                 Expanded(
-                  child: TextField(
-                    focusNode: _mobileNumberFocusNode,
-                    controller: TextEditingController(text: '1616 - 411666'),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.grey.withValues(
-                        alpha: 0.09,
-                      ), // Dynamic fill color
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 16.0,
-                      ),
-                    ),
-                    style: textTheme.bodyLarge?.copyWith(
-                      color: Colors.grey[850],
-                    ),
+                  child: AuthTextfields().buildTextField(
+                    controller: TextEditingController(),
+                    labelText: "Number",
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 16.0),
             _ProfileSectionTitle(title: 'Location', textTheme: textTheme),
-            TextField(
-              focusNode: _locationFocusNode,
-              controller: TextEditingController(text: 'Current Location'),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[100], // Dynamic fill color
-                prefixIcon: Icon(Icons.location_on, color: Colors.grey[600]),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
-              ),
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
+            AuthTextfields().buildTextField(
+              controller: TextEditingController(),
+              labelText: "Current Location",
             ),
             const SizedBox(height: 40.0),
             // Explore Your Features
