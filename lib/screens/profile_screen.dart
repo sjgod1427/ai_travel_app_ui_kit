@@ -176,14 +176,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               labelText: "Name",
             ),
             const SizedBox(height: 16.0),
-            _ProfileSectionTitle(title: 'Mobile Number', textTheme: textTheme),
+
             Row(
               children: [
                 // Country code text field
                 SizedBox(
                   width: 80,
                   child: AuthTextfields().buildTextField(
-                    controller: TextEditingController(text: '+880'),
+                    controller: TextEditingController(),
                     labelText: "Code",
                   ),
                 ),
@@ -197,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             const SizedBox(height: 16.0),
-            _ProfileSectionTitle(title: 'Location', textTheme: textTheme),
+
             AuthTextfields().buildTextField(
               controller: TextEditingController(),
               labelText: "Current Location",
@@ -244,27 +244,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 40.0),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ProfileSectionTitle extends StatelessWidget {
-  final String title;
-  final TextTheme textTheme;
-
-  const _ProfileSectionTitle({required this.title, required this.textTheme});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Text(
-        title,
-        style: textTheme.bodyLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Colors.grey[800],
         ),
       ),
     );
