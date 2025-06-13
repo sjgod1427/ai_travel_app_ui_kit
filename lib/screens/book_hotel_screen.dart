@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/date_timeline_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart'; // Import PrimaryTextButton
@@ -17,7 +18,9 @@ class BookHotelScreen extends StatelessWidget {
         elevation: 0, // No shadow
         leading: IconButton(
           icon: Icon(Icons.close, color: primaryColor, size: 20), // Close icon
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: Text(
           'Book a Hotel',
@@ -91,7 +94,13 @@ class BookHotelScreen extends StatelessWidget {
             PrimaryTextButton(
               // Using the UIKit PrimaryTextButton
               text: 'Next',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => DateTimelineScreen(),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 40.0), // Bottom padding
           ],

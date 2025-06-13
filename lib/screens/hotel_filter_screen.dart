@@ -1,3 +1,5 @@
+import 'package:ai_travel_app_ui_kit/screens/book_hotel_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/explore_hotels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 
@@ -62,7 +64,7 @@ class _HotelFilterScreenState extends State<HotelFilterScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: primaryColor, size: 20),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -462,7 +464,12 @@ class _HotelFilterScreenState extends State<HotelFilterScreen> {
               horizontal: 24.0,
               vertical: 24.0,
             ),
-            child: PrimaryTextButton(text: 'Done', onPressed: () {}),
+            child: PrimaryTextButton(
+              text: 'Done',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ),
         ],
       ),

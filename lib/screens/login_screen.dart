@@ -1,4 +1,6 @@
 import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
+import 'package:ai_travel_app_ui_kit/screens/home_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/social_auth_button.dart';
@@ -25,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: colorScheme.surface,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: primaryColor, size: 20),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -40,146 +42,107 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40.0),
-            Text(
-              'Welcome back!',
-              style: textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[850],
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              'Sign in to continue your adventure.',
-              style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 32.0),
-            // TextField(
-            //   keyboardType: TextInputType.emailAddress,
-            //   decoration: InputDecoration(
-            //     hintText: 'Email address',
-            //     hintStyle: textTheme.bodyLarge?.copyWith(
-            //       color: Colors.grey[500],
-            //     ),
-            //     filled: true,
-            //     fillColor: Colors.grey[100],
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //       borderSide: BorderSide.none,
-            //     ),
-            //     contentPadding: const EdgeInsets.symmetric(
-            //       horizontal: 16.0,
-            //       vertical: 16.0,
-            //     ),
-            //   ),
-            //   style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
-            // ),
-            AuthTextfields().buildTextField(
-              controller: TextEditingController(),
-            ),
-            const SizedBox(height: 16.0),
-            // TextField(
-            //   obscureText: _obscureText,
-            //   decoration: InputDecoration(
-            //     hintText: 'Password',
-            //     hintStyle: textTheme.bodyLarge?.copyWith(
-            //       color: Colors.grey[500],
-            //     ),
-            //     filled: true,
-            //     fillColor: Colors.grey[100],
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //       borderSide: BorderSide.none,
-            //     ),
-            //     contentPadding: const EdgeInsets.symmetric(
-            //       horizontal: 16.0,
-            //       vertical: 16.0,
-            //     ),
-            //     suffixIcon: Padding(
-            //       padding: const EdgeInsets.only(right: 8.0),
-            //       child: IconButton(
-            //         icon: Icon(
-            //           _obscureText ? Icons.visibility_off : Icons.visibility,
-            //           color: Colors.grey.withValues(alpha: 0.7),
-            //         ),
-            //         onPressed: () {
-            //           setState(() {
-            //             _obscureText = !_obscureText;
-            //           });
-            //         },
-            //       ),
-            //     ),
-            //   ),
-            //   style: textTheme.bodyLarge?.copyWith(color: Colors.grey[850]),
-            // ),
-            AuthTextfields().buildPasswordField(
-              controller: TextEditingController(),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Forgot Password?',
-                  style: textTheme.bodyMedium?.copyWith(color: primaryColor),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40.0),
+              Text(
+                'Welcome back!',
+                style: textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[850],
                 ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            PrimaryTextButton(text: 'Login', onPressed: () {}),
-            const SizedBox(height: 24.0),
-            Row(
-              children: [
-                Expanded(child: Divider(color: Colors.grey[300])),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              const SizedBox(height: 8.0),
+              Text(
+                'Sign in to continue your adventure.',
+                style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 32.0),
+
+              AuthTextfields().buildTextField(
+                controller: TextEditingController(),
+              ),
+              const SizedBox(height: 16.0),
+
+              AuthTextfields().buildPasswordField(
+                controller: TextEditingController(),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
                   child: Text(
-                    'Or',
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey[600],
+                    'Forgot Password?',
+                    style: textTheme.bodyMedium?.copyWith(color: primaryColor),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              PrimaryTextButton(
+                text: 'Login',
+                onPressed: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(pageBuilder: (_, __, ___) => HomeScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 24.0),
+              Row(
+                children: [
+                  Expanded(child: Divider(color: Colors.grey[300])),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      'Or',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey[600],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(child: Divider(color: Colors.grey[300])),
-              ],
-            ),
-            const SizedBox(height: 24.0),
-            SocialAuthButton.google(onPressed: () {}),
-            const SizedBox(height: 16.0),
-            SocialAuthButton.apple(onPressed: () {}),
-            const SizedBox(height: 16.0),
-            SocialAuthButton.facebook(onPressed: () {}),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Don\'t have an account?',
-                  style: textTheme.bodyMedium?.copyWith(
-                    color: Colors.grey[700],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Navigate to signup screen
-                  },
-                  child: Text(
-                    'Sign Up',
+                  Expanded(child: Divider(color: Colors.grey[300])),
+                ],
+              ),
+              const SizedBox(height: 24.0),
+              SocialAuthButton.google(onPressed: () {}),
+              const SizedBox(height: 16.0),
+              SocialAuthButton.apple(onPressed: () {}),
+              const SizedBox(height: 16.0),
+              SocialAuthButton.facebook(onPressed: () {}),
+              const SizedBox(height: 24.0), // Replaced Spacer with padding
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don\'t have an account?',
                     style: textTheme.bodyMedium?.copyWith(
-                      color: primaryColor,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[700],
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40.0),
-          ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => SignupScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Sign Up',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40.0),
+            ],
+          ),
         ),
       ),
     );

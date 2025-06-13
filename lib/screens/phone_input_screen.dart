@@ -1,5 +1,6 @@
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
+import 'package:ai_travel_app_ui_kit/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 
 class PhoneInputScreen extends StatelessWidget {
@@ -23,8 +24,11 @@ class PhoneInputScreen extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             color: primaryColor,
+            size: 20,
           ), // Back arrow icon matching UIKit style
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         actions: [
           Padding(
@@ -69,7 +73,15 @@ class PhoneInputScreen extends StatelessWidget {
               labelText: "Number?",
             ),
             const Spacer(), // Pushes content to the bottom
-            PrimaryTextButton(text: 'Continue'),
+            PrimaryTextButton(text: 'Continue',
+             onPressed: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => OtpScreen(),
+                      ),
+                    );
+                  },
+            ),
             const SizedBox(height: 20.0),
             Align(
               alignment: Alignment.center,

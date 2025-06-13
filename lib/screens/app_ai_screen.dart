@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/date_timeline_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppAIScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _AppAIScreenState extends State<AppAIScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
             size: 20,
           ), // Back icon with primary color and size 20
@@ -57,7 +58,13 @@ class _AppAIScreenState extends State<AppAIScreen> {
               color: primaryColor,
               size: 20,
             ), // Calendar icon with primary color and size 20
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => DateTimelineScreen(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: Icon(

@@ -27,8 +27,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
+            size: 20,
           ), // Back icon primary color
           onPressed: () {
             Navigator.of(context).pop();
@@ -43,16 +44,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings_outlined,
-              color: primaryColor,
-            ), // Settings icon primary color
-            onPressed: () {},
-          ),
-          const SizedBox(width: 8.0),
-        ],
+        actions: [const SizedBox(width: 8.0)],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),

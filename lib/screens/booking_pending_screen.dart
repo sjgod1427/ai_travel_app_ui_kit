@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/order_status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 
@@ -82,7 +83,7 @@ class BookingPendingScreen extends StatelessWidget {
             child: PrimaryTextButton(
               text: 'Got It',
               onPressed: () {
-                // Handle "Got It" action
+                Navigator.pop(context);
               },
             ),
           ),

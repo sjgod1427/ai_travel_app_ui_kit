@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 import 'package:flutter/services.dart'; // Required for FilteringTextInputFormatter
@@ -59,7 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
         backgroundColor: colorScheme.surface,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: primaryColor, size: 20),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -124,8 +125,9 @@ class _OtpScreenState extends State<OtpScreen> {
             PrimaryTextButton(
               text: 'Verify',
               onPressed: () {
-                // Read OTP: _otpControllers.map((c) => c.text).join()
-                // Perform verification logic
+                Navigator.of(context).push(
+                  PageRouteBuilder(pageBuilder: (_, __, ___) => HomeScreen()),
+                );
               },
             ),
             const SizedBox(height: 40.0),

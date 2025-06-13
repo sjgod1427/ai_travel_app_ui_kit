@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/hotel_filter_screen.dart';
 import 'package:flutter/material.dart';
 
 class ExploreHotelsScreen extends StatefulWidget {
@@ -76,7 +77,13 @@ class _ExploreHotelsScreenState extends State<ExploreHotelsScreen> {
               Icons.filter_list,
               color: Colors.grey[700],
             ), // Filter icon
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => HotelFilterScreen(),
+                ),
+              );
+            },
           ),
           const SizedBox(width: 8.0),
         ],

@@ -1,4 +1,5 @@
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
+import 'package:ai_travel_app_ui_kit/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -100,7 +101,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                PrimaryTextButton(text: "Continue"),
+                PrimaryTextButton(
+                  text: "Continue",
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => LoginScreen(),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(height: 20), // For bottom safe area
               ],
             ),

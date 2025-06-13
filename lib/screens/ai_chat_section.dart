@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/date_timeline_screen.dart';
 import 'package:flutter/material.dart';
 
 class AIChatSection extends StatefulWidget {
@@ -20,7 +21,7 @@ class _AIChatSectionState extends State<AIChatSection> {
         backgroundColor: Colors.white, // Match scaffold background
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
+          icon: Icon(Icons.arrow_back_ios, color: primaryColor, size: 20),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -37,7 +38,13 @@ class _AIChatSectionState extends State<AIChatSection> {
         actions: [
           IconButton(
             icon: Icon(Icons.calendar_month, color: primaryColor, size: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => DateTimelineScreen(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.more_vert, color: primaryColor, size: 20),

@@ -24,8 +24,9 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
+            size: 20,
           ), // Set back icon color to primaryColor
           onPressed: () {
             Navigator.of(context).pop();

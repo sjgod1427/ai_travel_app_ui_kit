@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/reservation_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart'; // Assuming PrimaryTextButton is suitable for "Reserve"
 // TapGestureRecognizer to make parts of TextSpan tappable
@@ -30,7 +31,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
             size: 20,
           ), // Back icon
@@ -291,7 +292,17 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                   SizedBox(
                     width: 120, // Fixed width for the button as per image
                     // Fixed height for the button
-                    child: PrimaryTextButton(text: 'Reserve'),
+                    child: PrimaryTextButton(
+                      text: 'Reserve',
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (_, __, ___) => ReservationDetailsScreen(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

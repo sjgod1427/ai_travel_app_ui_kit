@@ -1,4 +1,6 @@
 import 'package:ai_travel_app_ui_kit/components/text_fields/auth_textfields.dart';
+import 'package:ai_travel_app_ui_kit/screens/settings_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 
@@ -83,8 +85,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
+            size: 20,
           ), // Set back icon color to primaryColor
           onPressed: () {
             Navigator.of(context).pop();
@@ -105,7 +108,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Icons.settings_outlined,
               color: primaryColor,
             ), // Set settings icon color to primaryColor
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(pageBuilder: (_, __, ___) => SettingsScreen()),
+              );
+            },
           ),
           const SizedBox(width: 8.0),
         ],
@@ -239,7 +246,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Center(
               child: PrimaryTextButton(
                 text: 'Learn more about Travel AI App',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => SubscriptionScreen(),
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 40.0),

@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/date_timeline_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -34,7 +35,7 @@ class _AIChatScreen2State extends State<AIChatScreen2> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
             size: 20,
           ), // Back icon with primary color and size 20
@@ -54,7 +55,13 @@ class _AIChatScreen2State extends State<AIChatScreen2> {
         actions: [
           IconButton(
             icon: Icon(Icons.calendar_month, color: primaryColor, size: 20),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => DateTimelineScreen(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.more_vert, color: primaryColor, size: 20),

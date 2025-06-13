@@ -18,8 +18,9 @@ class SubscriptionScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: primaryColor,
+            size: 20,
           ), // Back arrow primary color
           onPressed: () {
             Navigator.of(context).pop();

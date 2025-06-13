@@ -1,3 +1,7 @@
+import 'package:ai_travel_app_ui_kit/screens/ai_chat_section.dart';
+import 'package:ai_travel_app_ui_kit/screens/explore_hotels_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/order_status_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,7 +12,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _selectedCategory = 'Hotel'; // Default selected category
+  int _selectedIndex = 0; // Current tab index
+
+  // List of screens/widgets for each tab
+  final List<Widget> _screens = [
+    const HomeTabContent(), // Home content
+    const OrderStatusScreen(), // Bookings content
+    const ExploreHotelsScreen(), // Favorites content
+    const ProfileScreen(), // Profile content
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: IndexedStack(index: _selectedIndex, children: _screens),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            PageRouteBuilder(pageBuilder: (_, __, ___) => AIChatSection()),
+          );
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: Icon(Icons.psychology_outlined),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      bottomNavigationBar: _BottomNavigationBar(
+        primaryColor: primaryColor,
+        colorScheme: colorScheme,
+        textTheme: textTheme,
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
+    );
+  }
+}
+
+// Home Tab Content (your original home screen content)
+class HomeTabContent extends StatefulWidget {
+  const HomeTabContent({super.key});
+
+  @override
+  State<HomeTabContent> createState() => _HomeTabContentState();
+}
+
+class _HomeTabContentState extends State<HomeTabContent> {
+  String _selectedCategory = 'Hotel';
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.white, // Consistent light grey background
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white, // Match scaffold background
+        backgroundColor: Colors.white,
         elevation: 0,
-        scrolledUnderElevation: 0, // Ensure no shadow on scroll
-        titleSpacing: 0, // Remove default title spacing for custom layout
+        scrolledUnderElevation: 0,
+        titleSpacing: 0,
         title: Padding(
           padding: const EdgeInsets.only(left: 24.0),
           child: Row(
@@ -31,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 radius: 20,
                 backgroundColor: Colors.grey[300],
                 backgroundImage: NetworkImage(
-                  'https://picsum.photos/100/100?random=profile_home', // Placeholder profile image
+                  'https://picsum.photos/100/100?random=profile_home',
                 ),
               ),
               const SizedBox(width: 12.0),
@@ -78,20 +139,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[500],
                 ),
                 filled: true,
-                fillColor: Colors.grey[100], // White background
+                fillColor: Colors.grey[100],
                 prefixIcon: Padding(
-                  // Added Padding for left padding
-                  padding: const EdgeInsets.only(
-                    left: 16.0,
-                    right: 8.0,
-                  ), // Added left padding
+                  padding: const EdgeInsets.only(left: 16.0, right: 8.0),
                   child: Icon(Icons.search, color: primaryColor),
                 ),
                 suffixIcon: Container(
                   margin: const EdgeInsets.only(right: 8.0),
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: Colors.transparent, // Made background transparent
+                    color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Icon(Icons.location_on, color: primaryColor),
@@ -200,9 +257,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16.0),
             ListView.builder(
               shrinkWrap: true,
-              physics:
-                  const NeverScrollableScrollPhysics(), // Disable internal scrolling
-              itemCount: 3, // Example: 3 recently booked items
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 3,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
@@ -212,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     pricePerDay: '\$126',
                     rating: '4.9 (234 reviews)',
                     imageUrl:
-                        'https://picsum.photos/400/250?random=${index + 10}', // Different image for each
+                        'https://picsum.photos/400/250?random=${index + 10}',
                     textTheme: textTheme,
                     colorScheme: colorScheme,
                     onTap: () {},
@@ -220,26 +276,382 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            const SizedBox(height: 80.0), // Padding for bottom navigation
+            const SizedBox(height: 80.0),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {}, // AI icon
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            50.0,
-          ), // Makes it a circular button
+    );
+  }
+}
+
+// Bookings Tab Content
+class BookingsTabContent extends StatelessWidget {
+  const BookingsTabContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final Color primaryColor = Theme.of(context).primaryColor;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Text(
+          'My Bookings',
+          style: textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.grey[800],
+          ),
         ),
-        child: Icon(Icons.psychology_outlined),
+        centerTitle: true,
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation
-              .endFloat, // Positions it in the bottom-right
-      bottomNavigationBar: _BottomNavigationBar(
-        primaryColor: primaryColor,
-        colorScheme: colorScheme,
-        textTheme: textTheme,
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            // Tab selection for booking status
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Text(
+                        'Upcoming',
+                        textAlign: TextAlign.center,
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Text(
+                        'Past',
+                        textAlign: TextAlign.center,
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24.0),
+            // Booking list
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 16.0),
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.network(
+                            'https://picsum.photos/80/80?random=booking$index',
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hotel Booking ${index + 1}',
+                                style: textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[800],
+                                ),
+                              ),
+                              const SizedBox(height: 4.0),
+                              Text(
+                                'Check-in: Dec ${20 + index}, 2024',
+                                style: textTheme.bodySmall?.copyWith(
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0,
+                                  vertical: 4.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.green.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(6.0),
+                                ),
+                                child: Text(
+                                  'Confirmed',
+                                  style: textTheme.bodySmall?.copyWith(
+                                    color: Colors.green[700],
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Favorites Tab Content
+class FavoritesTabContent extends StatelessWidget {
+  const FavoritesTabContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Text(
+          'Favorites',
+          style: textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.grey[800],
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16.0,
+            mainAxisSpacing: 16.0,
+            childAspectRatio: 0.8,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return _HotelCard(
+              hotelName: 'Favorite Hotel ${index + 1}',
+              address: 'City Location ${index + 1}',
+              pricePerDay: '\$${120 + index * 20}',
+              rating: '4.${7 + index % 3} (${200 + index * 50} reviews)',
+              imageUrl: 'https://picsum.photos/200/150?random=fav$index',
+              textTheme: textTheme,
+              colorScheme: colorScheme,
+              onTap: () {},
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// Profile Tab Content
+class ProfileTabContent extends StatelessWidget {
+  const ProfileTabContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final Color primaryColor = Theme.of(context).primaryColor;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Text(
+          'Profile',
+          style: textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.grey[800],
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings_outlined, color: primaryColor),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            // Profile header
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey[300],
+              backgroundImage: NetworkImage(
+                'https://picsum.photos/200/200?random=profile',
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Text(
+              'Jane Doe',
+              style: textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
+            ),
+            Text(
+              'jane.doe@example.com',
+              style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 32.0),
+            // Profile options
+            _ProfileOption(
+              icon: Icons.person_outline,
+              title: 'Personal Information',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            _ProfileOption(
+              icon: Icons.payment_outlined,
+              title: 'Payment Methods',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            _ProfileOption(
+              icon: Icons.notifications_outlined,
+              title: 'Notifications',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            _ProfileOption(
+              icon: Icons.security_outlined,
+              title: 'Security',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            _ProfileOption(
+              icon: Icons.help_outline,
+              title: 'Help & Support',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            _ProfileOption(
+              icon: Icons.info_outline,
+              title: 'About',
+              onTap: () {},
+              textTheme: textTheme,
+            ),
+            const SizedBox(height: 32.0),
+            // Logout button
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red[50],
+                  foregroundColor: Colors.red[700],
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
+                child: Text(
+                  'Logout',
+                  style: textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red[700],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileOption extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+  final TextTheme textTheme;
+
+  const _ProfileOption({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+    required this.textTheme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12.0),
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, color: Colors.grey[700]),
+              const SizedBox(width: 16.0),
+              Expanded(
+                child: Text(
+                  title,
+                  style: textTheme.bodyLarge?.copyWith(color: Colors.grey[800]),
+                ),
+              ),
+              Icon(Icons.chevron_right, color: Colors.grey[400]),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -283,7 +695,6 @@ class _CategoryChip extends StatelessWidget {
   }
 }
 
-// Re-using _HotelCard from explore_hotels_screen.dart
 class _HotelCard extends StatefulWidget {
   final String hotelName;
   final String address;
@@ -431,62 +842,52 @@ class _HotelCardState extends State<_HotelCard> {
   }
 }
 
-class _BottomNavigationBar extends StatefulWidget {
+class _BottomNavigationBar extends StatelessWidget {
   final Color primaryColor;
   final ColorScheme colorScheme;
   final TextTheme textTheme;
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
 
   const _BottomNavigationBar({
     required this.primaryColor,
     required this.colorScheme,
     required this.textTheme,
+    required this.selectedIndex,
+    required this.onItemTapped,
   });
-
-  @override
-  State<_BottomNavigationBar> createState() => _BottomNavigationBarState();
-}
-
-class _BottomNavigationBarState extends State<_BottomNavigationBar> {
-  int _selectedIndex = 0; // Default to Home tab
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: widget.colorScheme.surface,
+        color: colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, -3), // Shadow above the bar
+            offset: const Offset(0, -3),
           ),
         ],
       ),
       child: BottomNavigationBar(
-        elevation: 0, // No shadow on the bar itself, using container shadow
-        backgroundColor:
-            Colors.transparent, // Transparent to show container color
-        selectedItemColor: widget.primaryColor,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        selectedItemColor: primaryColor,
         unselectedItemColor: Colors.grey[500],
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        selectedLabelStyle: widget.textTheme.bodySmall?.copyWith(
+        selectedLabelStyle: textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
-          color: widget.primaryColor,
+          color: primaryColor,
         ),
-        unselectedLabelStyle: widget.textTheme.bodySmall?.copyWith(
+        unselectedLabelStyle: textTheme.bodySmall?.copyWith(
           color: Colors.grey[500],
         ),
-        type: BottomNavigationBarType.fixed, // Ensures all items are visible
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedIndex,
+        onTap: onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
