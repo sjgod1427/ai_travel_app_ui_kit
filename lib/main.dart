@@ -24,6 +24,7 @@ import 'package:ai_travel_app_ui_kit/screens/login_screen.dart'; // Import login
 import 'package:ai_travel_app_ui_kit/screens/signup_screen.dart'; // Import signup screen
 import 'package:ai_travel_app_ui_kit/screens/otp_screen.dart';
 import 'package:pixel_preview/pixel_thumbnail/pixel_thumbnail.dart'; // Import OTP screen
+import 'package:ai_travel_app_ui_kit/screens/select_country_screen.dart'; // Import the new SelectCountryScreen
 
 void main() {
   runApp(const MyApp());
@@ -121,6 +122,11 @@ class MyApp extends StatelessWidget {
                       PixelPreview(
                         presets: ScreenPresets(),
                         enabled: true,
+                        child: const SelectCountryScreen(), // Set as the initial screen
+                      ),
+                      PixelPreview(
+                        presets: ScreenPresets(),
+                        enabled: true,
                         child: const OnboardingScreen(),
                       ),
                       PixelPreview(
@@ -141,7 +147,7 @@ class MyApp extends StatelessWidget {
                       PixelPreview(
                         presets: ScreenPresets(),
                         enabled: true,
-                        child: const OtpScreen(), // Set as the initial screen
+                        child: const OtpScreen(),
                       ),
                       PixelPreview(
                         presets: ScreenPresets(),
