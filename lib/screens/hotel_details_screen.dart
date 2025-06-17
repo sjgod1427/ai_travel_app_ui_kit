@@ -975,7 +975,7 @@ class _HotelAttributeChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
       decoration: BoxDecoration(
         color: Colors.grey[100], // Light grey background
         borderRadius: BorderRadius.circular(10.0),

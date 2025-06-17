@@ -86,7 +86,10 @@ class _HomeTabContentState extends State<HomeTabContent> {
         scrolledUnderElevation: 0,
         titleSpacing: 0,
         title: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
+          padding: const EdgeInsets.only(
+            left: 24.0,
+            right: 16.0,
+          ), // Added right padding
           child: Row(
             children: [
               CircleAvatar(
@@ -97,33 +100,43 @@ class _HomeTabContentState extends State<HomeTabContent> {
                 ),
               ),
               const SizedBox(width: 12.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hello, Jane!',
-                    style: textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
+              Expanded(
+                // Wrap Column with Expanded to prevent overflow
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hello, Jane!',
+                      style: textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                      ),
+                      overflow: TextOverflow.ellipsis, // Handle text overflow
                     ),
-                  ),
-                  Text(
-                    'Hope you are having a good time',
-                    style: textTheme.bodySmall?.copyWith(
-                      color: Colors.grey[600],
+                    Text(
+                      'Hope you are having a good time',
+                      style: textTheme.bodySmall?.copyWith(
+                        color: Colors.grey[600],
+                      ),
+                      overflow: TextOverflow.ellipsis, // Handle text overflow
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
         ),
         actions: [
           IconButton(
+            padding: EdgeInsets.all(8.0), // Proper padding instead of 0
+            constraints: BoxConstraints(
+              minWidth: 40,
+              minHeight: 40,
+            ), // Minimum touch target
             icon: Icon(Icons.notifications_none, color: primaryColor, size: 24),
             onPressed: () {},
           ),
-          const SizedBox(width: 16.0),
+          const SizedBox(width: 16.0), // Increased spacing from edge
         ],
       ),
       body: SingleChildScrollView(

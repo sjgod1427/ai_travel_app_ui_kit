@@ -107,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => SelectCountryScreen(),
+                        pageBuilder: (_, __, ___) => LoginScreen(),
                       ),
                     );
                   },
