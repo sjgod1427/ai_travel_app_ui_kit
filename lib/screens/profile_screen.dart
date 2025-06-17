@@ -246,13 +246,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Center(
               child: PrimaryTextButton(
                 text: 'Learn more about Travel AI App',
-                onPressed: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => SubscriptionScreen(),
-                    ),
-                  );
-                },
+                onPressed: () {},
               ),
             ),
             const SizedBox(height: 40.0),
@@ -310,7 +304,13 @@ class _PromoCard extends StatelessWidget {
                   width: 120, // Constrain button width
                   height: 40, // Standard button height
                   child: FilledButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => SubscriptionScreen(),
+                        ),
+                      );
+                    },
                     style: FilledButton.styleFrom(
                       backgroundColor: primaryColor, // Set to primaryColor
                       foregroundColor: Colors.white, // Set text color to white

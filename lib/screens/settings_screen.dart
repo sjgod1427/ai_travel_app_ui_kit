@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/select_country_screen.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -74,7 +75,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _SettingsTile(
                   title: 'Language',
                   icon: Icons.language,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => SelectCountryScreen(),
+                      ),
+                    );
+                  },
                   textTheme: textTheme,
                   primaryColor: primaryColor,
                 ),

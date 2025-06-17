@@ -1,5 +1,6 @@
 import 'package:ai_travel_app_ui_kit/screens/ai_chat_section.dart';
 import 'package:ai_travel_app_ui_kit/screens/explore_hotels_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/hotel_details_screen.dart';
 import 'package:ai_travel_app_ui_kit/screens/order_status_screen.dart';
 import 'package:ai_travel_app_ui_kit/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -243,7 +244,13 @@ class _HomeTabContentState extends State<HomeTabContent> {
               imageUrl: 'https://picsum.photos/400/250?random=featured',
               textTheme: textTheme,
               colorScheme: colorScheme,
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => HotelDetailsScreen(),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 24.0),
             // Recently Booked
@@ -271,7 +278,13 @@ class _HomeTabContentState extends State<HomeTabContent> {
                         'https://picsum.photos/400/250?random=${index + 10}',
                     textTheme: textTheme,
                     colorScheme: colorScheme,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => HotelDetailsScreen(),
+                        ),
+                      );
+                    },
                   ),
                 );
               },

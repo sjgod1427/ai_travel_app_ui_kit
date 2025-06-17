@@ -464,12 +464,7 @@ class _HotelFilterScreenState extends State<HotelFilterScreen> {
               horizontal: 24.0,
               vertical: 24.0,
             ),
-            child: PrimaryTextButton(
-              text: 'Done',
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            child: PrimaryTextButton(text: 'Done', onPressed: () {}),
           ),
         ],
       ),

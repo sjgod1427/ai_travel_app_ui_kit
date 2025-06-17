@@ -1,4 +1,5 @@
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
+
 import 'package:flutter/material.dart';
 
 class SelectCountryScreen extends StatefulWidget {
@@ -14,24 +15,96 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
   List<Map<String, String>> _filteredCountries = [];
 
   final List<Map<String, String>> _allCountries = [
-    {'name': 'Afghanistan', 'code': 'AF', 'flag': 'https://picsum.photos/30/30?random=af'},
-    {'name': 'Albania', 'code': 'AL', 'flag': 'https://picsum.photos/30/30?random=al'},
-    {'name': 'Algeria', 'code': 'DZ', 'flag': 'https://picsum.photos/30/30?random=dz'},
-    {'name': 'Andorra', 'code': 'AD', 'flag': 'https://picsum.photos/30/30?random=ad'},
-    {'name': 'Angola', 'code': 'AO', 'flag': 'https://picsum.photos/30/30?random=ao'},
-    {'name': 'Argentina', 'code': 'AR', 'flag': 'https://picsum.photos/30/30?random=ar'},
-    {'name': 'Armenia', 'code': 'AM', 'flag': 'https://picsum.photos/30/30?random=am'},
-    {'name': 'Australia', 'code': 'AU', 'flag': 'https://picsum.photos/30/30?random=au'},
-    {'name': 'Austria', 'code': 'AT', 'flag': 'https://picsum.photos/30/30?random=at'},
-    {'name': 'Azerbaijan', 'code': 'AZ', 'flag': 'https://picsum.photos/30/30?random=az'},
-    {'name': 'Bahamas', 'code': 'BS', 'flag': 'https://picsum.photos/30/30?random=bs'},
-    {'name': 'Bahrain', 'code': 'BH', 'flag': 'https://picsum.photos/30/30?random=bh'},
-    {'name': 'Bangladesh', 'code': 'BD', 'flag': 'https://picsum.photos/30/30?random=bd'},
-    {'name': 'Barbados', 'code': 'BB', 'flag': 'https://picsum.photos/30/30?random=bb'},
-    {'name': 'Belarus', 'code': 'BY', 'flag': 'https://picsum.photos/30/30?random=by'},
-    {'name': 'Belgium', 'code': 'BE', 'flag': 'https://picsum.photos/30/30?random=be'},
-    {'name': 'Belize', 'code': 'BZ', 'flag': 'https://picsum.photos/30/30?random=bz'},
-    {'name': 'Benin', 'code': 'BJ', 'flag': 'https://picsum.photos/30/30?random=bj'},
+    {
+      'name': 'Afghanistan',
+      'code': 'AF',
+      'flag': 'https://picsum.photos/30/30?random=af',
+    },
+    {
+      'name': 'Albania',
+      'code': 'AL',
+      'flag': 'https://picsum.photos/30/30?random=al',
+    },
+    {
+      'name': 'Algeria',
+      'code': 'DZ',
+      'flag': 'https://picsum.photos/30/30?random=dz',
+    },
+    {
+      'name': 'Andorra',
+      'code': 'AD',
+      'flag': 'https://picsum.photos/30/30?random=ad',
+    },
+    {
+      'name': 'Angola',
+      'code': 'AO',
+      'flag': 'https://picsum.photos/30/30?random=ao',
+    },
+    {
+      'name': 'Argentina',
+      'code': 'AR',
+      'flag': 'https://picsum.photos/30/30?random=ar',
+    },
+    {
+      'name': 'Armenia',
+      'code': 'AM',
+      'flag': 'https://picsum.photos/30/30?random=am',
+    },
+    {
+      'name': 'Australia',
+      'code': 'AU',
+      'flag': 'https://picsum.photos/30/30?random=au',
+    },
+    {
+      'name': 'Austria',
+      'code': 'AT',
+      'flag': 'https://picsum.photos/30/30?random=at',
+    },
+    {
+      'name': 'Azerbaijan',
+      'code': 'AZ',
+      'flag': 'https://picsum.photos/30/30?random=az',
+    },
+    {
+      'name': 'Bahamas',
+      'code': 'BS',
+      'flag': 'https://picsum.photos/30/30?random=bs',
+    },
+    {
+      'name': 'Bahrain',
+      'code': 'BH',
+      'flag': 'https://picsum.photos/30/30?random=bh',
+    },
+    {
+      'name': 'Bangladesh',
+      'code': 'BD',
+      'flag': 'https://picsum.photos/30/30?random=bd',
+    },
+    {
+      'name': 'Barbados',
+      'code': 'BB',
+      'flag': 'https://picsum.photos/30/30?random=bb',
+    },
+    {
+      'name': 'Belarus',
+      'code': 'BY',
+      'flag': 'https://picsum.photos/30/30?random=by',
+    },
+    {
+      'name': 'Belgium',
+      'code': 'BE',
+      'flag': 'https://picsum.photos/30/30?random=be',
+    },
+    {
+      'name': 'Belize',
+      'code': 'BZ',
+      'flag': 'https://picsum.photos/30/30?random=bz',
+    },
+    {
+      'name': 'Benin',
+      'code': 'BJ',
+      'flag': 'https://picsum.photos/30/30?random=bj',
+    },
   ];
 
   @override
@@ -51,10 +124,11 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
   void _filterCountries() {
     final query = _searchController.text.toLowerCase();
     setState(() {
-      _filteredCountries = _allCountries.where((country) {
-        return country['name']!.toLowerCase().contains(query) ||
-               country['code']!.toLowerCase().contains(query);
-      }).toList();
+      _filteredCountries =
+          _allCountries.where((country) {
+            return country['name']!.toLowerCase().contains(query) ||
+                country['code']!.toLowerCase().contains(query);
+          }).toList();
     });
   }
 
@@ -72,8 +146,8 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
-            color: Colors.grey[800], // Dark grey for back arrow
+            Icons.arrow_back_ios,
+            color: primaryColor, // Dark grey for back arrow
             size: 24, // Consistent icon size
           ),
           onPressed: () {
@@ -93,7 +167,10 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -105,10 +182,15 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
                 fillColor: Colors.grey[100], // Light grey background
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 8.0),
-                  child: Icon(Icons.search, color: Colors.grey[600]), // Grey search icon
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.grey[600],
+                  ), // Grey search icon
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0), // More rounded corners
+                  borderRadius: BorderRadius.circular(
+                    15.0,
+                  ), // More rounded corners
                   borderSide: BorderSide.none, // No border line
                 ),
                 contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -144,15 +226,16 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 24.0,
+            ),
             child: PrimaryTextButton(
               text: 'Continue',
-              onPressed: _selectedCountryCode != null
-                  ? () {
-                      // Handle continue action, e.g., navigate to next screen
-                      print('Selected country: $_selectedCountryCode');
-                    }
-                  : null, // Disable button if no country is selected
+              onPressed:
+                  _selectedCountryCode != null
+                      ? () {}
+                      : null, // Disable button if no country is selected
             ),
           ),
         ],
@@ -192,7 +275,10 @@ class _CountryListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(
             width: isSelected ? 1.5 : 1.0,
-            color: isSelected ? primaryColor : Colors.grey[200]!, // Border color based on selection
+            color:
+                isSelected
+                    ? primaryColor
+                    : Colors.grey[200]!, // Border color based on selection
           ),
           boxShadow: [
             BoxShadow(
@@ -209,22 +295,32 @@ class _CountryListItem extends StatelessWidget {
           hoverColor: primaryColor.withOpacity(0.06),
           splashColor: primaryColor.withOpacity(0.12),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 12.0,
+            ),
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0), // Rounded corners for flag
+                  borderRadius: BorderRadius.circular(
+                    8.0,
+                  ), // Rounded corners for flag
                   child: Image.network(
                     flagUrl,
                     width: 30, // Fixed width for flag
                     height: 20, // Fixed height for flag
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      width: 30,
-                      height: 20,
-                      color: Colors.grey[300],
-                      child: Icon(Icons.flag_outlined, size: 16, color: Colors.grey[600]),
-                    ),
+                    errorBuilder:
+                        (context, error, stackTrace) => Container(
+                          width: 30,
+                          height: 20,
+                          color: Colors.grey[300],
+                          child: Icon(
+                            Icons.flag_outlined,
+                            size: 16,
+                            color: Colors.grey[600],
+                          ),
+                        ),
                   ),
                 ),
                 const SizedBox(width: 12.0),
@@ -254,19 +350,28 @@ class _CountryListItem extends StatelessWidget {
                   height: 20,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: isSelected ? primaryColor : Colors.transparent, // Fill with primary color if selected
+                    color:
+                        isSelected
+                            ? primaryColor
+                            : Colors
+                                .transparent, // Fill with primary color if selected
                     border: Border.all(
-                      color: isSelected ? primaryColor : Colors.grey[400]!, // Primary color border if selected, else grey
+                      color:
+                          isSelected
+                              ? primaryColor
+                              : Colors
+                                  .grey[400]!, // Primary color border if selected, else grey
                       width: 2.0,
                     ),
                   ),
-                  child: isSelected
-                      ? Icon(
-                          Icons.circle, // Small circle inside when selected
-                          color: Colors.white, // White circle
-                          size: 10,
-                        )
-                      : null,
+                  child:
+                      isSelected
+                          ? Icon(
+                            Icons.circle, // Small circle inside when selected
+                            color: Colors.white, // White circle
+                            size: 10,
+                          )
+                          : null,
                 ),
               ],
             ),

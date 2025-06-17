@@ -1,3 +1,5 @@
+import 'package:ai_travel_app_ui_kit/screens/booking_pending_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class OrderStatusScreen extends StatefulWidget {
@@ -22,26 +24,20 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: primaryColor,
-            size: 20,
-          ), // Set back icon color to primaryColor
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+
         title: Row(
           // Changed Column to Row
           mainAxisSize: MainAxisSize.min, // Ensure row takes minimum space
           children: [
-            Text(
-              'Order Status',
-              style: textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[800],
-                fontSize: 18,
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Order Status',
+                style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[800],
+                  fontSize: 18,
+                ),
               ),
             ),
             const SizedBox(width: 8.0), // Add some spacing between texts
@@ -61,7 +57,11 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
               Icons.search,
               color: primaryColor,
             ), // Set search icon color to primaryColor
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(pageBuilder: (_, __, ___) => HomeScreen()),
+              );
+            },
           ),
           const SizedBox(width: 8.0),
         ],
@@ -159,7 +159,11 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
                         'https://picsum.photos/100/100?random=${index + 10}',
                     onTap: () {
                       // Handle tap on the booking card
-                      print('Booking card $index tapped!');
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => BookingPendingScreen(),
+                        ),
+                      );
                       // You can navigate to a detail screen or perform other actions here
                     },
                   ),
@@ -259,14 +263,6 @@ class _BookingStatusCard extends StatelessWidget {
             width: 0.5,
             color: Colors.grey.withValues(alpha: 0.5),
           ),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: primaryColor.withValues(alpha: 0.1),
-          //     spreadRadius: 1,
-          //     blurRadius: 5,
-          //     offset: const Offset(0, 3),
-          //   ),
-          // ],
         ),
         child: InkWell(
           hoverColor: primaryColor.withValues(alpha: 0.06),

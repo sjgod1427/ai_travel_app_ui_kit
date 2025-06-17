@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/hotel_details_screen.dart';
 import 'package:ai_travel_app_ui_kit/screens/hotel_filter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,15 +37,7 @@ class _ExploreHotelsScreenState extends State<ExploreHotelsScreen> {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent, // Match scaffold background
         elevation: 0, // No shadow
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-            color: primaryColor,
-          ), // Close icon with primaryColor
-          onPressed: () {
-            Navigator.of(context).pop(); // Navigate back
-          },
-        ),
+
         title: Text(
           'Book a Hotel',
           style: textTheme.titleLarge?.copyWith(
@@ -56,22 +49,6 @@ class _ExploreHotelsScreenState extends State<ExploreHotelsScreen> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Container(
-              padding: const EdgeInsets.all(6.0),
-              decoration: BoxDecoration(
-                color: primaryColor.withValues(
-                  alpha: 0.1,
-                ), // Light primary color background
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Icon(
-                Icons.psychology_outlined,
-                color: primaryColor,
-              ), // AI icon
-            ),
-            onPressed: () {},
-          ),
           IconButton(
             icon: Icon(
               Icons.filter_list,
@@ -164,7 +141,13 @@ class _ExploreHotelsScreenState extends State<ExploreHotelsScreen> {
                         'https://picsum.photos/400/250?random=$index', // Placeholder image
                     textTheme: textTheme,
                     colorScheme: colorScheme,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => HotelDetailsScreen(),
+                        ),
+                      );
+                    },
                   ),
                 );
               },

@@ -1,5 +1,6 @@
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
 import 'package:ai_travel_app_ui_kit/screens/login_screen.dart';
+import 'package:ai_travel_app_ui_kit/screens/select_country_screen.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -106,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => LoginScreen(),
+                        pageBuilder: (_, __, ___) => SelectCountryScreen(),
                       ),
                     );
                   },

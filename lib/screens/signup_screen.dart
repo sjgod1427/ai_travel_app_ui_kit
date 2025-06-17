@@ -14,9 +14,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -27,7 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
         backgroundColor: colorScheme.surface,
-        elevation: 0,
+        scrolledUnderElevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: primaryColor, size: 20),
           onPressed: () => Navigator.of(context).pop(),

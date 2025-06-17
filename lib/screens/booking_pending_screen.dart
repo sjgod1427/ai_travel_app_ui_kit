@@ -1,3 +1,4 @@
+import 'package:ai_travel_app_ui_kit/screens/hotel_details_screen.dart';
 import 'package:ai_travel_app_ui_kit/screens/order_status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_travel_app_ui_kit/components/buttons/primary_text_button.dart';
@@ -80,12 +81,7 @@ class BookingPendingScreen extends StatelessWidget {
               horizontal: 24.0,
               vertical: 24.0,
             ),
-            child: PrimaryTextButton(
-              text: 'Got It',
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            child: PrimaryTextButton(text: 'Got It', onPressed: () {}),
           ),
         ],
       ),
@@ -101,6 +97,7 @@ class _HotelDetailCard extends StatefulWidget {
   final String imageUrl;
   final TextTheme textTheme;
   final ColorScheme colorScheme;
+  final VoidCallback? onTap;
 
   const _HotelDetailCard({
     required this.hotelName,
@@ -110,6 +107,7 @@ class _HotelDetailCard extends StatefulWidget {
     required this.imageUrl,
     required this.textTheme,
     required this.colorScheme,
+    this.onTap,
   });
 
   @override
@@ -117,124 +115,140 @@ class _HotelDetailCard extends StatefulWidget {
 }
 
 class _HotelDetailCardState extends State<_HotelDetailCard> {
-  bool _isFavorite = false; // State for the heart icon
+  bool _isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: widget.colorScheme.surface, // White background
+    return Material(
+      // Needed to show ripple
+      color: Colors.transparent,
+      child: InkWell(
+        onTap:
+            widget.onTap ??
+            () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => HotelDetailsScreen(),
+                ),
+              );
+            },
         borderRadius: BorderRadius.circular(15.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
-            spreadRadius: 5,
-            blurRadius: 5,
-            offset: const Offset(0, 5), // Subtle shadow
+        child: Ink(
+          decoration: BoxDecoration(
+            color: widget.colorScheme.surface,
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withValues(alpha: 0.1),
+                spreadRadius: 5,
+                blurRadius: 5,
+                offset: const Offset(0, 5),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  widget.imageUrl,
-                  height: 220,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder:
-                      (context, error, stackTrace) => Container(
-                        height: 220,
-                        width: double.infinity,
-                        color: Colors.grey[300],
-                        child: Icon(
-                          Icons.broken_image,
-                          color: Colors.grey[600],
-                          size: 80,
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.network(
+                      widget.imageUrl,
+                      height: 220,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      errorBuilder:
+                          (context, error, stackTrace) => Container(
+                            height: 220,
+                            width: double.infinity,
+                            color: Colors.grey[300],
+                            child: Icon(
+                              Icons.broken_image,
+                              color: Colors.grey[600],
+                              size: 80,
+                            ),
+                          ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 8.0,
+                    right: 8.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          _isFavorite ? Icons.favorite : Icons.favorite_border,
+                          color: _isFavorite ? Colors.red : Colors.grey[700],
                         ),
+                        onPressed: () {
+                          setState(() {
+                            _isFavorite = !_isFavorite;
+                          });
+                        },
                       ),
-                ),
-              ),
-              Positioned(
-                top: 8.0,
-                right: 8.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
-                    shape: BoxShape.circle,
+                    ),
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                      _isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: _isFavorite ? Colors.red : Colors.grey[700],
+                ],
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.hotelName,
+                          style: widget.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4.0),
+                        Text(
+                          widget.address,
+                          style: widget.textTheme.bodySmall?.copyWith(
+                            color: Colors.grey[600],
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      setState(() {
-                        _isFavorite = !_isFavorite;
-                      });
-                    },
                   ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.hotelName,
-                      style: widget.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[800],
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                  Text(
+                    '${widget.pricePerDay}/Day',
+                    style: widget.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
                     ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      widget.address,
-                      style: widget.textTheme.bodySmall?.copyWith(
-                        color: Colors.grey[600],
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  const Icon(Icons.star, color: Colors.amber, size: 16),
+                  const SizedBox(width: 4.0),
+                  Text(
+                    widget.rating,
+                    style: widget.textTheme.bodySmall?.copyWith(
+                      color: Colors.grey[700],
                     ),
-                  ],
-                ),
-              ),
-              Text(
-                '${widget.pricePerDay}/Day',
-                style: widget.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[800],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
-          const SizedBox(height: 8.0),
-          Row(
-            children: [
-              Icon(Icons.star, color: Colors.amber, size: 16),
-              const SizedBox(width: 4.0),
-              Text(
-                widget.rating,
-                style: widget.textTheme.bodySmall?.copyWith(
-                  color: Colors.grey[700],
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
